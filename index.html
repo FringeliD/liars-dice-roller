@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#0d3f35">
+    <title>Liar's Dice Roller</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app" aria-live="polite">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Private dice tray</p>
+          <h1>Liar's Dice Roller</h1>
+        </div>
+        <button class="icon-button" id="privacyToggle" type="button" aria-pressed="false" title="Hide dice">
+          <span aria-hidden="true">Hide</span>
+          <span class="sr-only">Hide dice</span>
+        </button>
+      </header>
+
+      <section class="status-panel" aria-label="Current hand">
+        <div>
+          <span class="label">Dice left</span>
+          <strong id="diceCount">5</strong>
+        </div>
+        <div>
+          <span class="label">Round color</span>
+          <strong id="tableColorName">Green</strong>
+        </div>
+        <div>
+          <span class="label">Last roll</span>
+          <strong id="lastRollTime">New game</strong>
+        </div>
+      </section>
+
+      <section class="tray" id="tray" aria-label="Rolled dice"></section>
+
+      <section class="actions" aria-label="Dice controls">
+        <button class="primary" id="rerollButton" type="button">Reroll dice</button>
+        <button id="loseButton" type="button">Lose one die</button>
+        <button id="gainButton" type="button">Restore die</button>
+      </section>
+
+      <section class="settings" aria-label="Display settings">
+        <div class="segmented" role="group" aria-label="Die display size">
+          <button type="button" data-size="small">Small</button>
+          <button type="button" data-size="regular" class="active">Regular</button>
+          <button type="button" data-size="large">Large</button>
+        </div>
+        <label class="switch">
+          <input id="confirmReroll" type="checkbox" checked>
+          <span>Confirm reroll</span>
+        </label>
+        <label class="switch">
+          <input id="shakeToRoll" type="checkbox">
+          <span>Shake to roll</span>
+        </label>
+      </section>
+
+      <section class="quick-bid" aria-label="Bid helper">
+        <div class="section-heading">
+          <h2>Bid helper</h2>
+          <button class="text-button" id="clearBid" type="button">Clear</button>
+        </div>
+        <div class="bid-grid">
+          <label>
+            Quantity
+            <input id="bidQuantity" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" placeholder="7" autocomplete="off">
+          </label>
+          <label>
+            Face
+            <select id="bidFace">
+              <option value="">-</option>
+              <option value="1">1s</option>
+              <option value="2">2s</option>
+              <option value="3">3s</option>
+              <option value="4">4s</option>
+              <option value="5">5s</option>
+              <option value="6">6s</option>
+            </select>
+          </label>
+        </div>
+        <p id="bidHint">Enter the previous bid to show legal raise examples.</p>
+      </section>
+
+      <details class="rules">
+        <summary>Rules and original behavior</summary>
+        <p>Each player privately opens this page on their phone, rolls their own dice, and keeps the screen hidden.</p>
+        <p>The first player announces a bid: a minimum quantity of one face across all players, such as "seven 3s". Ones are wild and count as the predicted number.</p>
+        <p>On your turn, raise the bid or challenge it. A raise is either a higher quantity of the same face, or any quantity of a higher face. On a challenge, everyone reveals their screens. If at least the bid quantity exists, counting wild ones, the bidder wins; otherwise the challenger wins.</p>
+        <p>The loser loses one die and opens the next round. At zero dice, that player is out.</p>
+        <p>Variant: after a non-one bid, you may bid 1s only by halving the quantity before increasing it. After a 1s bid, return to another face only by doubling the quantity before increasing it.</p>
+      </details>
+    </main>
+
+    <div class="privacy-cover" id="privacyCover" hidden>
+      <button id="revealButton" type="button">Hold to reveal</button>
+    </div>
+
+    <dialog id="rerollDialog">
+      <form method="dialog">
+        <h2>Reroll this hand?</h2>
+        <p>This replaces your private dice. Use it only when a new round starts or everyone agrees.</p>
+        <div class="dialog-actions">
+          <button value="cancel">Cancel</button>
+          <button class="primary" value="roll">Reroll</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
