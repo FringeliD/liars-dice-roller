@@ -41,3 +41,4 @@ QoL and design updates added:
 - `styles.css`: responsive felt-table visual design and dice rendering.
 - `app.js`: dice rolling, persistence, privacy, settings, and bid helper.
 - `serve.js`: optional local server for phones on the same network.
+- `standalone.html`: one-file build with all markup, CSS, and JavaScript inlined.
