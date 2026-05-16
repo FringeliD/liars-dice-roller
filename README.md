@@ -96,3 +96,13 @@ If behavior changes are made in the multi-file app, update `standalone.html` so 
 - `main` includes the standalone HTML version.
 
 See [docs/technical-guide.md](docs/technical-guide.md) for implementation details and maintenance guidance.
+
+## Project Documentation
+
+Future development context is kept in:
+
+- [AGENTS.md](AGENTS.md) for durable project notes and maintenance rules.
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for internal structure and design decisions.
+- [docs/technical-guide.md](docs/technical-guide.md) for deeper implementation guidance.
+
+Keep these docs updated when setup, architecture, gameplay behavior, commands, or maintenance procedures change.
